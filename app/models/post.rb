@@ -7,6 +7,19 @@ class Post < ApplicationRecord
 
 
   def click_baity
-  
+    keywords = ["Won't Believe", "Secret", "Top [number]", "Guess"]
+    title_valid = false
+    if title
+        for keyword in keywords
+            if title.match(keyword)
+                title_valid = true
+                break
+            end
+        end
+    end
+
+    if title_valid == false
+        errors.add(:title, "Title must contain ${}")
+    end
   end
 end
